@@ -93,11 +93,11 @@ public class TMDBView extends Application {
 
         imageSizeComboBox.getItems().addAll("w45",
                 "w185",
-                "w300",
+                "h632",
                 "original");
         imageSizeComboBox.getSelectionModel().selectFirst();
 
-        SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 9999, 1);
+        SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, Integer.MAX_VALUE, 1);
         idSpinner.setValueFactory(valueFactory);
 
         dataTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
@@ -142,8 +142,9 @@ public class TMDBView extends Application {
         ProfileModel profile = dataTable.getSelectionModel().getSelectedItem();
         if (profile != null) {
             DatabaseController.deleteRecord(profile.getId(), profile.getImageSize());
-            clearLabels();
             profileList.remove(profile);
+            clearLabels();
+            dataTable.getSelectionModel().clearSelection();
         }
     }
 

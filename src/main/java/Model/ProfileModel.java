@@ -72,13 +72,7 @@ public class ProfileModel {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
         if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
             return false;
         }
         final ProfileModel other = (ProfileModel) obj;
@@ -86,9 +80,9 @@ public class ProfileModel {
             if (other.id != null) {
                 return false;
             }
-        } else if (!id.equals(other.id) && !imageSize.equals(other.imageSize)) {
-            return false;
+        } else if (id.equals(other.id) && imageSize.equals(other.imageSize)) {
+            return true;
         }
-        return true;
+        return false;
     }
 }
