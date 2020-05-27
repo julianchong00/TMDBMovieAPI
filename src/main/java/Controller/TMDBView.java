@@ -129,6 +129,7 @@ public class TMDBView extends Application {
             }
 
             ProfileModel profile = new ProfileModel(id, name, description, imageSize, profilePath, link);
+            System.out.println(profileList.contains(profile));
             if (!profileList.contains(profile)) {
                 DatabaseController.insertRecord(id, name, description, profilePath, link, imageSize);
                 profileList.add(profile);
@@ -187,7 +188,7 @@ public class TMDBView extends Application {
             reader.close();
             return response.toString();
         } else {
-            System.out.println("GET request failed - No existing profile with ID: " + id.toString());
+            System.out.println("GET request failed");
             return "{}";
         }
     }
